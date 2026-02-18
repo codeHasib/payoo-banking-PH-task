@@ -2,7 +2,7 @@ let userInfo = JSON.parse(localStorage.getItem("user")) || [];
 const setUserInfo = () =>
   localStorage.setItem("user", JSON.stringify(userInfo));
 
-if (window.location.href === "index.html") {
+if (document.body.id === "login-page") {
   const accNo = document.querySelector("#input-acc");
   const pin = document.querySelector("#input-pin");
   const loginBtn = document.querySelector("#btn-login");
@@ -53,7 +53,7 @@ let appState = {
 let savedAppState = JSON.parse(localStorage.getItem("appState"));
 let setAppState = localStorage.setItem("appState", JSON.stringify(appState));
 
-if (window.location.href === "home.html") {
+if (document.body.id === "home-page") {
   // Add Money
   const bankSel = document.querySelector("#bank-select");
   const addMoneyAccNo = document.querySelector("#add-money-acc");
