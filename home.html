@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -40,7 +40,127 @@
       }
     </style>
   </head>
-<body>
-    
-</body>
+  <body>
+    <main class="max-w-[370px] min-h-screen mx-auto bg-base-200">
+      <header
+        class="flex justify-between items-center h-[60px] border-b py-2 px-2 bg-white"
+      >
+        <div class="flex h-full items-start justify-center gap-2">
+          <img src="./assets/logo.png" alt="" class="h-full" />
+          <div class="font-bold">
+            <h2>Current Balance:</h2>
+            <h2 class="balance"></h2>
+          </div>
+        </div>
+        <div>
+          <button id="logoutBtn" class="btn btn-soft btn-error">log-out</button>
+        </div>
+      </header>
+
+      <section class="py-10 px-2 space-y-5 bg-white">
+        <h1 class="font-extrabold text-2xl">
+          Welcome to Pay<span class="text-violet-600">oo</span>
+        </h1>
+        <p class="opacity-60">
+          Enjoy easy and convenient financial services with us. Cashout charge
+          is low and
+        </p>
+      </section>
+
+      <section class="grid grid-cols-3 gap-2 py-10 px-3 bg-white">
+        <button
+          class="btn btn-neutral btn-outline flex flex-col items-center justify-center h-[80px] w-[110px]"
+        >
+          <img src="./assets/opt-1.png" alt="" />
+          Add-money
+        </button>
+        <button
+          class="btn btn-neutral btn-outline flex flex-col items-center justify-center h-[80px] w-[110px]"
+        >
+          <img src="./assets/opt-2.png" alt="" />
+          Cash-out
+        </button>
+        <button
+          class="btn btn-neutral btn-outline flex flex-col items-center justify-center h-[80px] w-[110px]"
+        >
+          <img src="./assets/opt-3.png" alt="" />
+          Transfer Money
+        </button>
+        <button
+          class="btn btn-neutral btn-outline flex flex-col items-center justify-center h-[80px] w-[110px]"
+        >
+          <img src="./assets/opt-4.png" alt="" />
+          Redeem-bonus
+        </button>
+        <button
+          class="btn btn-neutral btn-outline flex flex-col items-center justify-center h-[80px] w-[110px]"
+        >
+          <img src="./assets/opt-5.png" alt="" />
+          Pay-bill
+        </button>
+        <button
+          class="btn btn-neutral btn-outline flex flex-col items-center justify-center h-[80px] w-[110px]"
+        >
+          <img src="./assets/opt-6.png" alt="" />
+          Transactions
+        </button>
+      </section>
+
+      <!-- Add Money -->
+      <section class="px-2">
+        <h2 class="my-4 ml-2 font-bold">Add Money</h2>
+        <fieldset
+          class="fieldset bg-white border-base-300 rounded-box w-full border p-4 space-y-2"
+        >
+          <label
+            for="bank-select"
+            class="label font-extrabold text-[14px] text-black"
+            >Select A Bank</label
+          >
+          <select id="bank-select" class="select validator" required>
+            <option disabled selected value="">Select bank:</option>
+            <option value="Trust Bank">Trust Bank</option>
+            <option value="DBBL">DBBL</option>
+            <option value="IBBL">IBBL</option>
+            <option value="EBL">EBL</option>
+          </select>
+          <label class="label font-extrabold text-[14px] text-black"
+            >Bank Account No.</label
+          >
+          <input
+            type="text"
+            id="add-money-acc"
+            class="input rounded-full border-none outline-none bg-base-300"
+            placeholder="Enter your 11 - digit account no"
+            maxlength="11"
+            minlength="11"
+          />
+
+          <label class="label font-extrabold text-[14px] text-black">Amount to Add</label>
+          <input
+            id="add-money-amnt"
+            type="number"
+            class="input rounded-full border-none outline-none bg-base-300"
+            placeholder="Amount"
+          />
+
+          <label class="label font-extrabold text-[14px] text-black">Pin</label>
+          <input
+            id="add-money-pin"
+            type="password"
+            class="input rounded-full border-none outline-none bg-base-300"
+            placeholder="Enter your 4-digit pin"
+            maxlength="4"
+            minlength="4"
+          />
+
+          <button id="add-money-btn" class="btn btn-primary mt-4 rounded-full">
+            Add Money
+          </button>
+        </fieldset>
+      </section>
+    </main>
+
+    <script src="./scripts/script2.js"></script>
+  </body>
 </html>
