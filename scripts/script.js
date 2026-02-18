@@ -10,6 +10,7 @@ if (document.body.id === "login-page") {
     const user = {
       accNo: "",
       pin: 0,
+      balance: 0,
     };
     const accNoValue = accNo.value.trim();
     const pinValue = pin.value.trim();
@@ -46,14 +47,13 @@ if (document.body.id === "login-page") {
   checkUser();
 }
 
-let appState = {
-  balance: 0,
-  transactions: [],
-};
-let savedAppState = JSON.parse(localStorage.getItem("appState"));
-let setAppState = localStorage.setItem("appState", JSON.stringify(appState));
+let appState = JSON.parse(localStorage.getItem("appState")) || [];
+let setAppState = () =>
+  localStorage.setItem("appState", JSON.stringify(appState));
 
 if (document.body.id === "home-page") {
+  // HomePage DOMS
+  const balanceDisplay = document.querySelector(".balance");
   // Add Money
   const bankSel = document.querySelector("#bank-select");
   const addMoneyAccNo = document.querySelector("#add-money-acc");
@@ -77,10 +77,34 @@ if (document.body.id === "home-page") {
       alert("Invalid Amount");
       return;
     }
+    const pinValue = addMoneyPin.value.trim();
+    if (pinValue !== userInfo[0].pin) {
+      alert(`Incorrect user pin
+      Your saved pin is: ${userInfo[0].pin};
+        `);
+      return;
+    }
+    userInfo[0].balance += amountValue;
+    balanceDisplay.textContent = `$${userInfo[0].balance}`;
+    const now = new Date();
+    const time = now.toLocaleString().split(",").join("|");
+    addTransactions(type, amountValue, addMoneyAccNoValue, time);
+    setAppState();
+    setUserInfo();
+    bankSel.value = "";
+    addMoneyAccNo.value = "";
+    addMoneyAmnt.value = "";
+    addMoneyPin.value = "";
   }
-
   addMoneyBtn.addEventListener("click", () => {
     addMoney();
+  });
+
+  // Logout
+  const logOutBtn = document.querySelector("#logoutBtn");
+  logOutBtn.addEventListener("click", ()=> {
+    localStorage.clear();
+    window.location.replace("index.html");
   });
 
   // Re usable functions
@@ -91,6 +115,14 @@ if (document.body.id === "home-page") {
       accNo: accNo,
       time: time,
     };
-    appState.transactions.push(transaction);
+    appState.push(transaction);
   }
+  function renderBalance(arr) {
+    if (arr.length > 0) {
+      balanceDisplay.textContent = `$${arr[0].balance}`;
+    }
+  }
+
+  // Call important functions
+  renderBalance(userInfo);
 }
