@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Payoo | Login</title>
 
+    <!-- Favicon Link -->
+    <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon" />
+
     <!-- Daisy UI AND Tailwind Connecting -->
     <link
       href="https://cdn.jsdelivr.net/npm/daisyui@5"
@@ -39,28 +42,49 @@
   </head>
   <body>
     <main
-      class="max-w-[450px] min-h-screen mx-auto bg-base-200 px-10 py-15 flex justify-center items-center flex-col"
+      class="max-w-[450px] min-h-screen mx-auto bg-base-200 px-10 py-15 flex justify-center items-center flex-col gap-10"
     >
-      <section class="space-y-15">
-        <div>
-          <img src="./assets/Logo-full.png" alt="" />
+      <section>
+        <div class="w-full">
+          <img src="./assets/Logo-full.png" alt="" class="w-full" />
         </div>
       </section>
       <section>
         <fieldset
-          class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4"
+          class="fieldset bg-white border-base-300 rounded-box w-xs border p-4"
         >
           <legend class="fieldset-legend">Login</legend>
 
-          <label class="label">Email</label>
-          <input type="email" class="input" placeholder="Email" />
+          <label class="label font-extrabold text-[14px] text-black"
+            >Account No.</label
+          >
+          <input
+            type="email"
+            id="input-acc"
+            class="input rounded-full border-none outline-none bg-base-300"
+            placeholder="Enter your 11 - digit account no"
+            maxlength="11"
+            minlength="11"
+          />
 
-          <label class="label">Password</label>
-          <input type="password" class="input" placeholder="Password" />
+          <label class="label font-extrabold text-[14px] text-black">Pin</label>
+          <input
+            id="input-pin"
+            type="password"
+            class="input rounded-full border-none outline-none bg-base-300"
+            placeholder="Enter your 4-digit pin"
+            maxlength="4"
+            minlength="4"
+          />
 
-          <button class="btn btn-neutral mt-4">Login</button>
+          <button id="btn-login" class="btn btn-primary mt-4 rounded-full">
+            Login
+          </button>
         </fieldset>
       </section>
     </main>
+
+    <!-- JS connect -->
+    <script src="scripts/script.js"></script>
   </body>
 </html>
