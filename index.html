@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payoo | Login</title>
+
+    <!-- Daisy UI AND Tailwind Connecting -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Font Select -->
+    <style>
+      * {
+        font-family: "outfit", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <main
+      class="max-w-[450px] min-h-screen mx-auto bg-base-200 px-10 py-15 flex justify-center items-center flex-col"
+    >
+      <section class="space-y-15">
+        <div>
+          <img src="./assets/Logo-full.png" alt="" />
+        </div>
+      </section>
+      <section>
+        <fieldset
+          class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4"
+        >
+          <legend class="fieldset-legend">Login</legend>
+
+          <label class="label">Email</label>
+          <input type="email" class="input" placeholder="Email" />
+
+          <label class="label">Password</label>
+          <input type="password" class="input" placeholder="Password" />
+
+          <button class="btn btn-neutral mt-4">Login</button>
+        </fieldset>
+      </section>
+    </main>
+  </body>
+</html>
