@@ -38,6 +38,30 @@
       * {
         font-family: "outfit", sans-serif;
       }
+      #trans-div {
+        padding: 10px;
+      }
+      #trans-div div {
+        background-color: white;
+        padding: 10px 15px;
+        border-radius: 15px;
+        border: 1px solid rgba(0, 0, 0, 0.131);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      #trans-div div div {
+        display: block;
+        border: none;
+      }
+      #trans-div div h2 {
+        font-size: 18px;
+        font-weight: bolder;
+      }
+      #trans-div p {
+        color: rgba(128, 128, 128, 0.757);
+      }
     </style>
   </head>
   <body id="home-page">
@@ -281,6 +305,66 @@
             Get Bonus
           </button>
         </fieldset>
+      </section>
+
+      <!-- Pay bill -->
+      <section id="pay-bill-section" class="methods px-2">
+        <h2 class="my-4 ml-2 font-bold">Pay Bill</h2>
+        <fieldset
+          class="fieldset bg-white border-base-300 rounded-box w-full border p-4 space-y-2"
+        >
+          <label
+            for="bill-select"
+            class="label font-extrabold text-[14px] text-black"
+            >Select To Pay</label
+          >
+          <select id="bill-select" class="select validator" required>
+            <option disabled selected value="">Select bill type:</option>
+            <option value="Gas Bill">Gas Bill</option>
+            <option value="Water Bill">Water Bill</option>
+            <option value="Internet Bill">Internet Bill</option>
+          </select>
+          <label class="label font-extrabold text-[14px] text-black"
+            >Biller Account Number</label
+          >
+          <input
+            type="text"
+            id="bill-acc"
+            class="input rounded-full border-none outline-none bg-base-300"
+            placeholder="Enter your 11 - digit account no"
+            maxlength="11"
+            minlength="11"
+          />
+
+          <label class="label font-extrabold text-[14px] text-black"
+            >Amount to Pay</label
+          >
+          <input
+            id="bill-amnt"
+            type="number"
+            class="input rounded-full border-none outline-none bg-base-300"
+            placeholder="Amount"
+          />
+
+          <label class="label font-extrabold text-[14px] text-black">Pin</label>
+          <input
+            id="bill-pin"
+            type="password"
+            class="input rounded-full border-none outline-none bg-base-300"
+            placeholder="Enter your 4-digit pin"
+            maxlength="4"
+            minlength="4"
+          />
+
+          <button id="bill-btn" class="btn btn-primary mt-4 rounded-full">
+            Pay Now
+          </button>
+        </fieldset>
+      </section>
+
+      <section id="transactions-section" class="methods px-2">
+        <h2 class="my-4 ml-2 font-bold">Pay Bill</h2>
+        <div id="trans-div">
       </section>
     </main>
 

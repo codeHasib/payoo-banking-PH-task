@@ -91,7 +91,7 @@ if (document.body.id === "home-page") {
     userInfo[0].balance += amountValue;
     balanceDisplay.textContent = `$${userInfo[0].balance}`;
     const now = new Date();
-    const time = now.toLocaleString().split(",").join("|");
+    const time = now.toLocaleString().split(",").join(" - ");
     addTransactions(type, amountValue, addMoneyAccNoValue, time);
     setAppState();
     setUserInfo();
@@ -131,7 +131,7 @@ if (document.body.id === "home-page") {
       return;
     }
     const now = new Date();
-    const time = now.toLocaleDateString().split(",").join("- ");
+    const time = now.toLocaleDateString().split(",").join(" - ");
     userInfo[0].balance -= amntValue;
     addTransactions(type, amntValue, numberValue, time);
     renderBalance(userInfo);
@@ -175,7 +175,7 @@ if (document.body.id === "home-page") {
       return;
     }
     const now = new Date();
-    const time = now.toLocaleDateString().split(",").join("- ");
+    const time = now.toLocaleDateString().split(",").join(" - ");
     userInfo[0].balance -= amntValue;
     addTransactions(type, amntValue, numberValue, time);
     renderBalance(userInfo);
@@ -203,7 +203,7 @@ if (document.body.id === "home-page") {
     const couponValue = bonusCouponInput.value.trim().toLowerCase();
     if (couponValue === "hasib") {
       const now = new Date();
-      const time = now.toLocaleString().split(",").join("- ");
+      const time = now.toLocaleString().split(",").join(" - ");
       userInfo[0].balance += 1000;
       renderBalance(userInfo);
       addTransactions(type, 1000, couponValue, time);
@@ -220,6 +220,92 @@ if (document.body.id === "home-page") {
   bonusCouponInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") getBonus();
   });
+  // Pay Bill
+  const payBillSelect = document.querySelector("#pay-bill-select");
+  payBillSelect.addEventListener("click", () => {
+    sectionSelect("pay-bill-section");
+  });
+  const payBillTypeSelect = document.querySelector("#bill-select");
+  const payBillAccInput = document.querySelector("#bill-acc");
+  const payBillAmntInput = document.querySelector("#bill-amnt");
+  const payBillPinInput = document.querySelector("#bill-pin");
+  const payBillBtn = document.querySelector("#bill-btn");
+  function payBill() {
+    const type = "Pay Bill";
+    const billType = payBillTypeSelect.value;
+    if (billType.length <= 0) {
+      alert("Please select a bill type");
+      return;
+    }
+    const accNo = payBillAccInput.value.trim();
+    if (accNo.length < 11 || accNo.length > 11) {
+      alert("Invalid Acc Number");
+      return;
+    }
+    const amountValue = Number(payBillAmntInput.value.trim());
+    if (amountValue < 0 || amountValue > userInfo[0].balance) {
+      alert("Invalid Amount or Insufficient Balance");
+      return;
+    }
+    const pinValue = payBillPinInput.value.trim();
+    if (pinValue !== userInfo[0].pin) {
+      alert(`Incorrect user pin
+      Your saved pin is: ${userInfo[0].pin};
+        `);
+      return;
+    }
+    userInfo[0].balance -= amountValue;
+    const now = new Date();
+    const time = now.toLocaleString().split(",").join(" - ");
+    renderBalance(userInfo);
+    addTransactions(type, amountValue, billType, time);
+    setAppState();
+    setUserInfo();
+    billType.value = "";
+    payBillAccInput.value = "";
+    payBillAmntInput.value = "";
+    payBillPinInput.value = "";
+  }
+  payBillBtn.addEventListener("click", () => {
+    payBill();
+  });
+  payBillPinInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") payBill();
+  });
+  // Transactions
+  const transSel = document.querySelector("#transactions-select");
+  transSel.addEventListener("click", () => {
+    sectionSelect("transactions-section");
+    renderTransactions();
+  });
+  const transParentDiv = document.querySelector("#trans-div");
+  function renderTransactions() {
+    transParentDiv.innerHTML = "";
+    if (appState.length > 0) {
+      appState.forEach((trans) => {
+        let div = document.createElement("div");
+        let imageDiv = document.createElement("div");
+        let img = document.createElement("img");
+        img.src = "assets/opt-6.png";
+        imageDiv.append(img);
+        div.append(imageDiv);
+        let textDiv = document.createElement("div");
+        let h2 = document.createElement("h2");
+        h2.textContent = trans.name;
+        textDiv.append(h2);
+        let p = document.createElement("p");
+        p.textContent = trans.time;
+        textDiv.append(p);
+        div.append(textDiv);
+        transParentDiv.append(div);
+      });
+    } else {
+      transParentDiv.innerHTML = `<h2 class="text-center text-xl font-lighter">
+        No history.
+        </h2>`;
+    }
+  }
+
   // Logout
   const logOutBtn = document.querySelector("#logoutBtn");
   logOutBtn.addEventListener("click", () => {
